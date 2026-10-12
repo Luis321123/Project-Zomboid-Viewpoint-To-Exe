@@ -458,3 +458,5 @@ _actualizacion_b42.21/                   # kit Linux/actualización
   y su *model pack* pertenecen a sus autores; se obtienen gratuitamente desde Steam Workshop.
 - Los *scripts* y la documentación aquí descritos son utilidades de instalación/automatización.
   Cada usuario debe **poseer una licencia legítima** del juego para usarlo.
+
+<!-- yolo test -->
