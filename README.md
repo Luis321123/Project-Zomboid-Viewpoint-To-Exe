@@ -24,6 +24,69 @@
 14. [Árbol de archivos](#14-árbol-de-archivos)
 15. [Aviso legal](#15-aviso-legal)
 
+> 🚀 **¿No sabes programar?** Ve directo a la
+> **[Guía paso a paso](#0-guía-paso-a-paso-para-no-programadores)**.
+
+---
+
+## 0. Guía paso a paso (para no programadores)
+
+> Aquí tienes **todo lo que tienes que hacer, en orden**, con comandos listos para
+> copiar y pegar. No necesitas saber programar.
+
+### ✅ Qué necesitas antes de empezar
+1. **Una copia de Project Zomboid Build 42.21** — tu carpeta del juego, la que
+   contiene `projectzomboid.jar` y `ProjectZomboid64.exe`.
+2. **Los mods ZombieBuddy y Viewpoint**:
+   - **Con Steam (recomendado):** suscríbete en el Workshop a
+     [`ZombieBuddy` (ID `3619862853`)](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853)
+     y [`Viewpoint` (ID `3809306528`)](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528).
+     Se descargan solos y los scripts los encuentran automáticamente.
+   - **Sin Steam:** pon las carpetas de los mods en un carpeta llamada `mods`:
+     - Linux → `mods/` junto al script: `<dónde-descomprimiste-esto>/scripts/mods/`
+     - Windows → `mods/` **dentro de la carpeta del juego**: `<juego>\mods\`
+
+### 🔵 En Linux (con Wine)
+```bash
+# 1) Descomprime el repo (el .zip descargado de GitHub) en tu carpeta personal.
+
+# 2) Instala mods + agente (cambia TU-CARPETA por la ruta real de tu juego):
+bash ~/PZ-Viewpoint/scripts/aplicar_viewpoint_zb.sh "TU-CARPETA-DEL-JUEGO"
+
+# 3) Copia el lanzador a la carpeta del juego y ve allí:
+cp ~/PZ-Viewpoint/launcher/arrancar_pz.sh "TU-CARPETA-DEL-JUEGO/"
+cd "TU-CARPETA-DEL-JUEGO"
+
+# 4) ¡A jugar!
+bash arrancar_pz.sh            # normal · -c: con consola · -d: debug OpenGL
+```
+
+### 🟢 En Windows
+1. Descomprime el repo.
+2. Copia la carpeta `windows/` **dentro de la carpeta del juego** →
+   `<juego>\windows\INSTALAR_VIEWPOINT_WINDOWS.bat`.
+3. Comprueba los mods (ver requisitos: en `<juego>\mods\` o suscritos en Steam).
+4. Haz **doble clic** en `INSTALAR_VIEWPOINT_WINDOWS.bat` (copiará mods y
+   parcheará el lanzador automáticamente).
+5. Arranca `ProjectZomboid64.exe` (o `<juego>\windows\Arrancar_PZ.bat`).
+
+### 🕹️ En el juego (ambos sistemas)
+1. Menú **Mods** → activa **ZombieBuddy**.
+2. Menú **Mods** → activa **Viewpoint** (justo después).
+3. Acepta el diálogo de aprobación de los **JAR** (normal: usar hash SHA-256) → **Sí**.
+4. Crea o carga una partida. Pulsa **`O`** → cámara en primera persona.
+
+### ❓ Problemas comunes
+| Síntoma | Solución |
+|---|---|
+| *"No encuentro el mod..."* | Pon los mods en `mods/` (ver requisitos) o suscríbete en Steam. |
+| El juego no arranca / se cierra | Tu copia debe ser **Build 42.21** (Viewpoint no funciona en 42.20). |
+| Cámara inestable o baja FPS | Usa el preset **"Vanilla"** de Viewpoint (tecla `Delete`). |
+| Se acaba la memoria | Sube la RAM: en `projectzomboid64.bat` usa `-Xmx4096m` (o más). |
+
+> Además tienes un script de **actualización** a 42.21 (`scripts/actualizar_b4221.sh`)
+> y la **documentación técnica completa** en `docs/`.
+
 ---
 
 ## 1. Resumen

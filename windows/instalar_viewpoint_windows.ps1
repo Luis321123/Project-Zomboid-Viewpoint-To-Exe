@@ -28,19 +28,33 @@ if (-not (Test-Path (Join-Path $GameDir "projectzomboid.jar"))) {
 }
 Info "Carpeta del juego: $GameDir"
 
-# --- origen de los mods ---
-$zbSrc = Join-Path $GameDir "mods\ZombieBuddy"
-$vpSrc = Join-Path $GameDir "mods\Viewpoint"
-if (-not (Test-Path $zbSrc)) { Die "No encuentro el mod ZombieBuddy en $zbSrc" }
-if (-not (Test-Path $vpSrc)) { Die "No encuentro el mod Viewpoint en $vpSrc" }
+# --- origen de los mods (1: carpeta del juego; 2: caché de Steam) ---
+function Find-ModSource {
+    param([string]$Name, [string]$WorkshopId)
+    $cands = @(Join-Path $GameDir "mods\$Name")
+    foreach ($base in @(${env:ProgramFiles(x86)}, $env:ProgramFiles)) {
+        if ($base -and (Test-Path $base)) {
+            $cands += Join-Path $base "Steam\steamapps\workshop\content\108600\$WorkshopId\mods\$Name"
+        }
+    }
+    foreach ($c in $cands) { if (Test-Path $c) { return $c } }
+    return $null
+}
+$zbSrc = Find-ModSource "ZombieBuddy" "3619862853"
+$vpSrc = Find-ModSource "Viewpoint" "3809306528"
+if (-not $zbSrc) { Die "No encuentro el mod ZombieBuddy. Ponlo en <juego>\mods\ZombieBuddy o suscríbete en Steam Workshop (ID 3619862853)." }
+if (-not $vpSrc) { Die "No encuentro el mod Viewpoint. Ponlo en <juego>\mods\Viewpoint o suscríbete en Steam Workshop (ID 3809306528)." }
+Info "ZombieBuddy encontrado en: $zbSrc"
+Info "Viewpoint encontrado en: $vpSrc"
 
 # --- 1) copiar mods a %USERPROFILE%\Zomboid\mods ---
 $userMods = Join-Path $env:USERPROFILE "Zomboid\mods"
 New-Item -ItemType Directory -Force -Path $userMods | Out-Null
-foreach ($m in @("ZombieBuddy","Viewpoint")) {
+$srcs = @{ "ZombieBuddy" = $zbSrc; "Viewpoint" = $vpSrc }
+foreach ($m in $srcs.Keys) {
     $dst = Join-Path $userMods $m
     if (Test-Path $dst) { Remove-Item -Recurse -Force $dst }
-    Copy-Item -Recurse -Force (Join-Path $GameDir "mods\$m") $dst
+    Copy-Item -Recurse -Force $srcs[$m] $dst
     Ok "Mod $m  ->  $dst"
 }
 
@@ -101,7 +115,7 @@ foreach ($b in @("ProjectZomboid64.bat","ProjectZomboid64ShowConsole.bat","Proje
 }
 
 # --- 5) versionMin del mod Viewpoint ---
-foreach ($mi in @((Join-Path $GameDir "mods\Viewpoint\common\mod.info"), (Join-Path $userMods "Viewpoint\common\mod.info"))) {
+foreach ($mi in @((Join-Path $vpSrc "common\mod.info"), (Join-Path $userMods "Viewpoint\common\mod.info"))) {
     if (Test-Path $mi) {
         $t = [IO.File]::ReadAllText($mi)
         if ($t -match '(?m)^versionMin=') { $t = [regex]::Replace($t, '(?m)^versionMin=[^\r\n]*', 'versionMin=42.21') }

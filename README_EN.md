@@ -38,6 +38,63 @@ arrancar_pz
 Then, **in game**: Mods → enable **ZombieBuddy**, then **Viewpoint** → approve
 the JAR dialogs.
 
+## Step-by-step (for non-programmers)
+
+> Everything you need to do, in order, with copy-paste commands.
+
+### Before you start
+1. **A copy of Project Zomboid Build 42.21** — your game folder, the one with
+   `projectzomboid.jar` and `ProjectZomboid64.exe`.
+2. **The two mods** (ZombieBuddy + Viewpoint):
+   - **With Steam (recommended):** subscribe on the Workshop to
+     [ZombieBuddy (`3619862853`)](https://steamcommunity.com/sharedfiles/filedetails/?id=3619862853)
+     and [Viewpoint (`3809306528`)](https://steamcommunity.com/sharedfiles/filedetails/?id=3809306528).
+     They download automatically and the scripts find them.
+   - **Without Steam:** put the mods in a `mods` folder:
+     Linux → `mods/` next to the script (`<unzip-location>/scripts/mods/`) ·
+     Windows → `mods/` inside the game folder (`<game>\mods\`).
+
+### 🟦 Linux (Wine)
+```bash
+# 1) Unzip the repo (the GitHub .zip) into your home folder.
+
+# 2) Install mods + agent (replace YOUR-GAME-FOLDER):
+bash ~/PZ-Viewpoint/scripts/aplicar_viewpoint_zb.sh "YOUR-GAME-FOLDER"
+
+# 3) Copy the launcher into the game folder and go there:
+cp ~/PZ-Viewpoint/launcher/arrancar_pz.sh "YOUR-GAME-FOLDER/"
+cd "YOUR-GAME-FOLDER"
+
+# 4) Play!
+bash arrancar_pz.sh            # normal · -c: console · -d: OpenGL debug
+```
+
+### 🟩 Windows
+1. Unzip the repo.
+2. Copy the `windows/` folder **inside the game folder** →
+   `<game>\windows\INSTALAR_VIEWPOINT_WINDOWS.bat`.
+3. Make sure you have the mods (see "Before you start").
+4. **Double-click** `INSTALAR_VIEWPOINT_WINDOWS.bat` (copies mods + patches the
+   launcher automatically).
+5. Launch `ProjectZomboid64.exe` (or `<game>\windows\Arrancar_PZ.bat`).
+
+### 🎮 In game (both systems)
+1. Menu **Mods** → enable **ZombieBuddy**.
+2. Menu **Mods** → enable **Viewpoint** (right after).
+3. Approve the **JAR** dialogs (SHA-256) → **Yes**.
+4. Start or load a game. Press **`O`** → first-person camera.
+
+### ❓ Common problems
+| Symptom | Fix |
+|---|---|
+| *"Mod not found..."* | Put the mods in `mods/` or subscribe on Steam. |
+| Game won't start / crashes | Your copy must be **Build 42.21** (Viewpoint needs it). |
+| Camera stutters / low FPS | Use Viewpoint's **"Vanilla"** preset (press `Delete`). |
+| Out of memory | Raise RAM: in `projectzomboid64.bat` use `-Xmx4096m` (or more). |
+
+> There is also a script to **update** an older copy to 42.21
+> (`scripts/actualizar_b4221.sh`) and the **full technical docs** in `docs/`.
+
 ## Controls (Viewpoint)
 `O` first person · `Shift+O` toggle 1st/3rd · `Insert+O` free cam · `Delete` settings.
 
