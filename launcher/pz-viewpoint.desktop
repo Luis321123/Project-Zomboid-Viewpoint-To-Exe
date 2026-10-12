@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Project Zomboid 42.21 (Viewpoint)
+GenericName=Project Zomboid
+Comment=Build 42.21 con ZombieBuddy + Viewpoint (Wine)
+Exec=/home/home/.local/bin/arrancar_pz
+Icon=pz-viewpoint
+Terminal=false
+Categories=Game;ActionGame;
+Keywords=zombie;survival;project;zomboid;viewpoint;
+StartupNotify=true

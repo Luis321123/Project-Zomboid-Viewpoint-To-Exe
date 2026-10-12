@@ -1,0 +1,33 @@
+NOTICE
+======
+
+This repository contains only installation/automation scripts and
+documentation. It does NOT redistribute Project Zomboid or any third-party mods.
+
+License of the original content
+-------------------------------
+The original scripts and documentation in this repository are distributed
+under the MIT License (see LICENSE file).
+Copyright (c) 2026 luis321123
+
+Third-party components (NOT covered by this repo's MIT license)
+---------------------------------------------------------------
+- Project Zomboid
+  (c) The Indie Stone. All rights reserved.
+  https://projectzomboid.com
+  No game files are included or redistributed.
+
+- ZombieBuddy (mod)
+  (c) Zed — https://github.com/zed-0xff/ZombieBuddy
+  License: GNU GPL-3.0 (per its original repository).
+  Available for free on Steam Workshop (ID 3619862853).
+
+- Project Viewpoint (mod) and its "3D model pack"
+  (c) their respective authors (Steam Workshop).
+  Available for free on Steam Workshop (mod ID 3809306528;
+  optional model pack ID 3810302175).
+
+- Steam and the Steam logo are trademarks of Valve Corporation.
+
+Each user must own a legitimate copy of Project Zomboid to run the game. This
+repository only makes it easier to install free mods.
